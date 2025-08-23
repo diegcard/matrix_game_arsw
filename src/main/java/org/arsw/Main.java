@@ -1,9 +1,24 @@
 package org.arsw;
 
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+/**
+ * The entry point of the Matrix Game application.
+ * Initializes the game GUI with a matrix of size 10.
+ *
+ * Usage:
+ * Run this class to start the Matrix Game.
+ *
+ * @author diego
+ */
 public class Main {
+
+    /**
+     * The entry point of the MatrixGame application.
+     * Initializes the game GUI with a grid size of 10.
+     *
+     * @param args Command-line arguments (not used).
+     */
     public static void main(String[] args) {
-        new MatrixGameGUI(10);
+        int gridSize = (args.length > 0) ? Integer.parseInt(args[0]) : 10;
+        new MatrixGameGUI(gridSize);
     }
 }
