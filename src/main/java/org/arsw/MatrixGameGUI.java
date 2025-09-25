@@ -6,7 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class MatrixGameGUI extends JFrame {
-    private Matrix matrix;
+    private CleanMatrix matrix;
     private JButton[][] buttons;
     private int size;
     private JLabel statusLabel;
@@ -17,7 +17,7 @@ public class MatrixGameGUI extends JFrame {
     public MatrixGameGUI(int size) {
         this.size = size;
         initializeGUI();
-        matrix = new Matrix(size, this);
+        matrix = new CleanMatrix(size, this);
     }
 
     private void initializeGUI() {
@@ -85,7 +85,7 @@ public class MatrixGameGUI extends JFrame {
         BoardGenerator generator = new BoardGenerator(size);
         BoardGenerator.GeneratedBoard generatedBoard = generator.generateRandomBoard();
 
-        Neo neo = new Neo(generatedBoard.neoPosition.x, generatedBoard.neoPosition.y, matrix);
+            Neo neo = new Neo(generatedBoard.neoPosition.x, generatedBoard.neoPosition.y, matrix);
         matrix.addNeo(neo);
 
         for (BoardGenerator.Position phonePos : generatedBoard.phonePositions) {
@@ -122,7 +122,7 @@ public class MatrixGameGUI extends JFrame {
             }
         }
 
-        matrix = new Matrix(size, this);
+        matrix = new CleanMatrix(size, this);
         clearBoard();
         startButton.setEnabled(true);
         statusLabel.setText("Presiona 'Iniciar Juego' para generar un tablero aleatorio");
@@ -188,5 +188,14 @@ public class MatrixGameGUI extends JFrame {
             JOptionPane.showMessageDialog(this, "¡Neo ha sido atrapado por un agente! ¡Derrota!",
                     "Derrota", JOptionPane.ERROR_MESSAGE);
         });
+    }
+
+    // Helper methods for Clean Architecture
+    public JLabel getStatusLabel() {
+        return statusLabel;
+    }
+
+    public JButton[][] getButtons() {
+        return buttons;
     }
 }
